@@ -7,7 +7,7 @@ import TextField from '@material-ui/core/TextField';
 const sampleData = {
     username: 'John',
     password: 'password',
-    // userType: 0
+    // userType: '0'
 }
 
 
@@ -31,7 +31,7 @@ function Login(){
         <TextField id='outlined-basic' label='Username' variant='outlined' />
         <TextField id='outlined-basic' label='Password' variant='outlined' />
 
-        <Button onClick={login(sampleData)} size='large' variant='contained' color='primary'>
+        <Button onClick={register(sampleData)} size='large' variant='contained' color='primary'>
         Login
         </Button>
         </form>

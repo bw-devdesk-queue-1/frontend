@@ -20,7 +20,7 @@ export const login = (credentials) => dispatch => {
             payload: credentials
         })
         window.localStorage.setItem("token", res.data.payload)
-        // this.props.history.push("/dashboard")
+        
     })
     .catch(err => console.log("Could not complete login", err));
 }

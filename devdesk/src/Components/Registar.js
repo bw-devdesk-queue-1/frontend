@@ -14,14 +14,14 @@ function Registar(){
     const [account,setAccount] = useState({
         username:'',
         password:'',
-        userType:''
-
+        userType: Number()    
     } );
 
     const iChangeStuff = event => {
         setAccount({...account,[event.target.name]:event.target.value})
     };
-    // use axios post to the backend to add the accounts to the database. using on submit...... also then redirect to the login page   !!! need to look that up!!!!
+
+    console.log(account)
 
     return(
         <form>
@@ -35,15 +35,15 @@ function Registar(){
         alignItems="center"
         >
         <FormLabel>Create your account <br></br>Enter your information</FormLabel>
-        <TextField id='outlined-basic' label='Username' variant='outlined' name='username' />
-        <TextField id='outlined-basic' label='Password' variant='outlined' name='password' />
+        <TextField id='outlined-basic' label='Username' variant='outlined' name='username' onChange={event => iChangeStuff(event)}/>
+        <TextField id='outlined-basic' label='Password' variant='outlined' name='password' onChange={event => iChangeStuff(event)}/>
         <FormControl>Choose your role!</FormControl>
-        <RadioGroup aria-label='Role' name =''>
+        <RadioGroup aria-label='Role' name ='userType' onChange={event => iChangeStuff(event)}>
             <FormControlLabel type='number' value='1' control={<Radio/>} label='Helper'/>
             <FormControlLabel type='number' value='0' control={<Radio/>} label='Student'/>
         </RadioGroup>
 
-        <Button type='sumbit' size='large' variant='contained' color='primary'>
+        <Button onClick={register(account)} type='submit' size='large' variant='contained' color='primary'>
         Create Account
         </Button>
         </Grid>

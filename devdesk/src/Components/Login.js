@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
-import {connect} from 'react-redux';
-import {login, register} from '../actions';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-import Grid from '@material-ui/core/Grid';
-
+import React, { useState } from "react";
+import { connect } from "react-redux";
+import { login } from "../actions";
+import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
+import Grid from "@material-ui/core/Grid";
 
 const getLogin = {
     username: '',
@@ -12,9 +11,7 @@ const getLogin = {
 }
 
 
-
-
-function Login(){
+function Login(props){
     const [user,setUser] = useState(getLogin);
     const iChangeStuff = event => {
         setUser({...user, [event.target.name]: event.target.value})
@@ -22,7 +19,6 @@ function Login(){
 
     console.log(user)
 
-    //use axios get to pull the user info back, John said that he will handle the authentication   !!! get with John to make sure this is correct  !!!
 
     return(
         
@@ -33,32 +29,30 @@ function Login(){
         direction="column"
         justify="space-between"
         alignItems="center"
-        >
-        <Button variant='contained' color='primary'>
-        Helper
+      >
+        <Button variant="contained" color="primary">
+          Helper
         </Button>
-        <Button variant='contained' color='primary'>
-        Student
+        <Button variant="contained" color="primary">
+          Student
         </Button>
 
         <TextField id='outlined-basic' label='username' name="username" variant='outlined'  onChange={event => iChangeStuff(event)}/>
         <TextField id='outlined-basic' label='password' name="password" variant='outlined' onChange={event => iChangeStuff(event)} />
 
-        <Button onClick={login(user)} size='large' variant='contained' color='primary'>
+        <Button onClick={() => props.login(user)} size='large' variant='contained' color='primary'>
         Login
         </Button>
-        </Grid>
-        </form>
-        
-        
-    )
+      </Grid>
+    </form>
+  );
 }
 
 const mapStateToProps = state => {
-    return {
-        credentials: state.credentials,
-        isLoading: state.isLoading
-    }
-}
+  return {
+    credentials: state.credentials,
+    isLoading: state.isLoading
+  };
+};
 
-export default connect(mapStateToProps, {login, register})(Login);
+export default connect(mapStateToProps, { login })(Login);

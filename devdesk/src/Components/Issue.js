@@ -7,7 +7,12 @@ export default function Issue({ issues }) {
   const params = useParams();
   let issue = null;
   if (issues !== null) {
-    issue = issues[params.id];
+    // Params returns a string id, and the server returns an integer.
+    // I decided to convert everything to a string, just in case we ever
+    // decide to change the id to a string
+    //
+    // Or something like that.
+    issue = issues.filter(x => x.id.toString() === params.id)[0];
   }
 
   return (

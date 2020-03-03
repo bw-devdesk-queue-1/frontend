@@ -1,16 +1,6 @@
 import React, { useState } from "react";
-import Container from "@material-ui/core/Container";
-import Card from "@material-ui/core/Card";
-import TextField from "@material-ui/core/TextField";
-
-function IssueCard(props) {
-  return (
-    <Card>
-      <h2>{props.title}</h2>
-      <div>{props.content}</div>
-    </Card>
-  );
-}
+import { Container, TextField } from "@material-ui/core";
+import IssueCard from "./IssueCard.js";
 
 export default function Queue() {
   const [issues, setIssues] = useState([

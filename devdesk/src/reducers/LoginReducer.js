@@ -1,7 +1,8 @@
-import {LOADING, LOGIN} from '../actions';
+import {LOADING, LOGIN, REGISTER, GET_DATA} from '../actions';
 
 export const initialState = {
     credentials: {},
+    data: [],
     isLoading: false
 }
 
@@ -12,9 +13,22 @@ export const loginReducer = (state = initialState, action) => {
                 isLoading: true
             }
         case LOGIN:
+            console.log(action)
             return {
+                ...state,
                 credentials: action.payload,
                 isLoading: false
+            }
+        case REGISTER:
+            return {
+                    credentials: action.payload,
+                    isLoading: false
+                }
+        case GET_DATA:
+            return {
+                ...state,
+                data: action.payload,
+                loading: true
             }
         default:
             return state;

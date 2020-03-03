@@ -1,31 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import { Route, Switch } from "react-router-dom";
+import {connect} from 'react-redux';
+import {getData} from './actions';
+import PrivateRoute from './Components/PrivateRoute';
 import Login from "./Components/Login";
 import Issue from "./Components/Issue.js";
 import IssueList from "./Components/IssueList";
 import Registar from "./Components/Registar";
 
-function App() {
-  const [issues, setIssues] = useState([
-    { id: 0, title: "Hello, world!", content: "I can say hello." },
-    {
-      id: 1,
-      title: "Live share doesn't work",
-      content:
-        "I installed the thing but then it says not enough stuff is installed. :/"
-    }
-  ]);
+function App(props) {
+  
+  console.log(props.data)
+ 
+
   return (
     <div className="App">
+    <button onClick={props.getData}>Refresh Issue List</button>
       <Switch>
         <Route
           path="/issues/:id"
-          render={props => <Issue {...props} issues={issues} />}
+          render={props => <Issue {...props} issues={props.data} />}
         />
         <Route
           path="/issues"
-          render={props => <IssueList {...props} issues={issues} />}
+          render={props => <IssueList {...props} issues={props.data} />}
         />
         <Route path="/registar" component={Registar} />
         <Route exact path="/" component={Login} />
@@ -34,4 +33,11 @@ function App() {
   );
 }
 
-export default App;
+const mapStateToProps = state => {
+  console.log(state.data)
+  return {
+    data: [state.data]
+  }
+}
+
+export default connect(mapStateToProps, {getData})(App);

@@ -1,11 +1,22 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Container } from "@material-ui/core";
 import IssueCard from "./IssueCard.js";
 import { useParams } from "react-router-dom";
+import axios from "axios";
 
-export default function Queue({ issues }) {
+const getURL = id => `https://dev2desk.herokuapp.com/api/tickets/${id}`;
+
+export default function Issue({ issues }) {
   const params = useParams();
-  const issue = issues[params.id];
+  const [issue, setIssue] = useState();
+
+  useEffect(() => {
+    axios
+      .get(getURL(params.id))
+      .then(res => setIssue(res.data))
+      .catch(err => console.log("Failed to retrieve issue: ", err));
+  }, [params.id]);
+
   return (
     <Container>
       <IssueCard {...issue} />

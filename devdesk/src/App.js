@@ -1,22 +1,18 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import { Route, Switch } from "react-router-dom";
-import {connect} from 'react-redux';
-import {getData} from './actions';
-import PrivateRoute from './Components/PrivateRoute';
+import { connect } from "react-redux";
+import { getData } from "./actions";
+import PrivateRoute from "./Components/PrivateRoute";
 import Login from "./Components/Login";
 import Issue from "./Components/Issue.js";
 import IssueList from "./Components/IssueList";
 import Registar from "./Components/Registar";
 
 function App(props) {
-  
-  console.log(props.data)
- 
-
   return (
     <div className="App">
-    <button onClick={props.getData}>Refresh Issue List</button>
+      <button onClick={props.getData}>Refresh Issue List</button>
       <Switch>
         <Route
           path="/issues/:id"
@@ -34,10 +30,10 @@ function App(props) {
 }
 
 const mapStateToProps = state => {
-  console.log(state.data)
+  console.log(state.data);
   return {
     data: [state.data]
-  }
-}
+  };
+};
 
-export default connect(mapStateToProps, {getData})(App);
+export default connect(mapStateToProps, { getData })(App);

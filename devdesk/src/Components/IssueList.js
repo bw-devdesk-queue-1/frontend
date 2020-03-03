@@ -8,18 +8,20 @@ export default function IssueList(props) {
   const { match } = props;
   const issues = props.issues || null;
 
-  let list = null;
-  if (issues !== null) {
-    list = issues.map(issue => <IssueCard key={issue.id} {...issue} />);
-  }
-
   return (
     <Container>
       <Switch>
         <Route exact path={`${match.path}`}>
-          {list !== null ? list : <p>Loading...</p>}
+          {issues !== null ? (
+            issues.map(issue => <IssueCard key={issue.id} {...issue} />)
+          ) : (
+            <p>Loading...</p>
+          )}
         </Route>
-        <Route path={`${match.path}/:id`} component={Issue} />
+        <Route
+          path={`${match.path}/:id`}
+          render={renderProps => <Issue {...renderProps} issues={issues} />}
+        />
       </Switch>
     </Container>
   );

@@ -1,8 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { Card } from "@material-ui/core";
 import { Link } from "react-router-dom";
-
-import { getData } from "../actions";
 
 export default function IssueCard(props) {
   return (

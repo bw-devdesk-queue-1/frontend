@@ -15,10 +15,6 @@ function App(props) {
       <button onClick={props.getData}>Refresh Issue List</button>
       <Switch>
         <Route
-          path="/issues/:id"
-          render={props => <Issue {...props} issues={props.data} />}
-        />
-        <Route
           path="/issues"
           render={props => <IssueList {...props} issues={props.data} />}
         />

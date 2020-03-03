@@ -6,27 +6,28 @@ import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 
 
-const sampleData = {
-    username: 'John',
-    password: 'password',
-    // userType: 'student'
+const getLogin = {
+    username: '',
+    password: '',
 }
 
 
 
 
 function Login(){
-    const [user,setUser] = useState();
+    const [user,setUser] = useState(getLogin);
     const iChangeStuff = event => {
         setUser({...user, [event.target.name]: event.target.value})
     }
+
+    console.log(user)
 
     //use axios get to pull the user info back, John said that he will handle the authentication   !!! get with John to make sure this is correct  !!!
 
     return(
         
         
-        <form onSubmit={iChangeStuff}>
+        <form>
         <Grid 
         container
         direction="column"
@@ -40,10 +41,10 @@ function Login(){
         Student
         </Button>
 
-        <TextField id='outlined-basic' label='Username' variant='outlined'  onChange={event => iChangeStuff(event)}/>
-        <TextField id='outlined-basic' label='Password' variant='outlined' onChange={event => iChangeStuff(event)} />
+        <TextField id='outlined-basic' label='username' name="username" variant='outlined'  onChange={event => iChangeStuff(event)}/>
+        <TextField id='outlined-basic' label='password' name="password" variant='outlined' onChange={event => iChangeStuff(event)} />
 
-        <Button onClick={login(sampleData)} size='large' variant='contained' color='primary'>
+        <Button onClick={login(user)} size='large' variant='contained' color='primary'>
         Login
         </Button>
         </Grid>

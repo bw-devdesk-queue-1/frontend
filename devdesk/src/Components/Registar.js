@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import {connect} from 'react-redux';
+import {register} from '../actions';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import RadioGroup from '@material-ui/core/RadioGroup';
@@ -8,7 +10,7 @@ import FormLabel from '@material-ui/core/FormLabel';
 import { Radio } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 
-export default function Registar(){
+function Registar(){
     const [account,setAccount] = useState({
         username:'',
         password:'',
@@ -47,7 +49,12 @@ export default function Registar(){
         </Grid>
         </form>
     )
-    
-
-
 }
+
+const mapStateToProps = state => {
+    return {
+        credentials: state.credentials
+    }
+}
+
+export default connect(mapStateToProps, {register})(Registar)

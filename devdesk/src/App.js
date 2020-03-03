@@ -16,7 +16,7 @@ function App(props) {
       <Switch>
         <Route
           path="/issues"
-          render={props => <IssueList {...props} issues={props.data} />}
+          render={renderProps => <IssueList {...renderProps} issues={props.issues} />}
         />
         <Route path="/registar" component={Registar} />
         <Route exact path="/" component={Login} />
@@ -26,9 +26,8 @@ function App(props) {
 }
 
 const mapStateToProps = state => {
-  console.log(state.data);
   return {
-    data: [state.data]
+    issues: state.data
   };
 };
 

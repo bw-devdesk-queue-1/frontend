@@ -13,7 +13,6 @@ export const loginReducer = (state = initialState, action) => {
                 isLoading: true
             }
         case LOGIN:
-            console.log(action)
             return {
                 ...state,
                 credentials: action.payload,

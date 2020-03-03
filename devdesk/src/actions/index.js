@@ -44,14 +44,12 @@ export const register = (credentials) => dispatch => {
 }
 
 export const getData = () => dispatch => {
-    console.log(dispatch)
     dispatch({
         type: LOADING
     })
     axiosWithAuth()
     .get("/api/tickets/")
     .then(res => {
-        console.log(res.data)
         dispatch({
             type: GET_DATA,
             payload: res.data

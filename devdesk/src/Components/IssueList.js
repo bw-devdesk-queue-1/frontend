@@ -1,24 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Container } from "@material-ui/core";
 import IssueCard from "./IssueCard";
 import Issue from "./Issue";
 import { Switch, Route } from "react-router-dom";
-import axios from "axios";
 
-const URL = `https://dev2desk.herokuapp.com/api/tickets`;
-
-export default function IssueList({ match }) {
-  const [issues, setIssues] = useState(null);
-
-  useEffect(() => {
-    axios
-      .get(URL)
-      .then(res => setIssues(res.data))
-      .catch(err => console.log("Failed to retrieve issues: ", err));
-  }, []);
+export default function IssueList(props) {
+  const { match } = props;
+  const issues = props.issues || null;
 
   let list = null;
-  if (issues != null) {
+  if (issues !== null) {
     list = issues.map(issue => <IssueCard key={issue.id} {...issue} />);
   }
 

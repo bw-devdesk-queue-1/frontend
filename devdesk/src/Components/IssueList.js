@@ -50,8 +50,8 @@ function IssueList(props) {
           {filtered !== null ? (
             filtered.map(issue => <IssueCard key={issue.id} {...issue} />)
           ) : (
-            <p>Loading...</p>
-          )}
+              <p>Loading...</p>
+            )}
         </Route>
         <Route
           path={`${match.path}/:id`}

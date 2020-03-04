@@ -27,6 +27,9 @@ export const login = (credentials) => dispatch => {
                 payload: res.data
             })
             window.localStorage.setItem("token", res.data.token)
+            window.localStorage.setItem("username", res.data.username)
+            window.localStorage.setItem("userType", res.data.userType)
+            window.localStorage.setItem("id", res.data.id)
 
 
         })

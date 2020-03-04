@@ -25,7 +25,7 @@ const CreateIssue = (props) => {
 
     const handleSubmit = e => {
         e.preventDefault();
-        props.postData(5, createIssue)
+        props.postData(window.localStorage.getItem("id"), createIssue)
     }
 
 

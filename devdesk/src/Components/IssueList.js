@@ -48,10 +48,12 @@ function IssueList(props) {
       <Switch>
         <Route exact path={`${match.path}`}>
           {filtered !== null ? (
-            filtered.map(issue => <IssueCard key={issue.id} {...issue} />)
+            filtered.map(issue => (
+              <IssueCard key={issue.ticket.id} {...issue} />
+            ))
           ) : (
-              <p>Loading...</p>
-            )}
+            <p>Loading...</p>
+          )}
         </Route>
         <Route
           path={`${match.path}/:id`}

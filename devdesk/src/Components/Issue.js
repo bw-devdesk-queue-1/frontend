@@ -1,7 +1,7 @@
 import React from "react";
-import { Container, Card } from "@material-ui/core";
-import IssueCard from "./IssueCard.js";
+import { Container, Card, Link } from "@material-ui/core";
 import { useParams } from "react-router-dom";
+import { Link as RouterLink } from "react-router-dom";
 
 export default function Issue(props) {
   const params = useParams();
@@ -19,7 +19,11 @@ export default function Issue(props) {
     <>
       {issue !== null && issue !== undefined ? (
         <Card>
-          <IssueCard {...issue} />
+          <h2>
+            <Link component={RouterLink} to={`/issues/${issue.ticket.id}`}>{issue.ticket.title}</Link>
+          </h2>
+          <div>{issue.ticket.description}</div>
+
           <h3>Tried</h3>
           <div>{issue.ticket.tried}</div>
 

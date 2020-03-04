@@ -44,9 +44,9 @@ function IssueList(props) {
       <Link component={RouterLink} to="/createIssue">
         Create New Issue
       </Link>
-      <Categories categories={categories} match={match} />
       <Switch>
         <Route exact path={`${match.path}`}>
+          <Categories categories={categories} match={match} />
           <Grid container justify="center" spacing={2}>
             {filtered !== null ? (
               filtered.map(issue => (

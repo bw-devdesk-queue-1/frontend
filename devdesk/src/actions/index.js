@@ -1,4 +1,6 @@
-import { axiosWithAuth } from '../utils/axiosWithAuth';
+import {
+    axiosWithAuth
+} from '../utils/axiosWithAuth';
 import axios from 'axios';
 
 export const LOADING = 'LOADING';
@@ -6,6 +8,8 @@ export const LOGIN = 'LOGIN';
 export const REGISTER = 'REGISTER';
 export const GET_DATA = 'GET_DATA';
 export const POST_DATA = 'POST_DATA';
+export const EDIT_DATA = 'EDIT_DATA';
+export const DELETE_DATA = 'DELETE_DATA';
 
 
 export const login = (credentials) => dispatch => {
@@ -23,6 +27,7 @@ export const login = (credentials) => dispatch => {
                 payload: res.data
             })
             window.localStorage.setItem("token", res.data.token)
+
 
         })
         .catch(err => console.log("Could not complete login", err));
@@ -73,4 +78,27 @@ export const postData = (id, postTicket) => dispatch => {
             })
         })
         .catch(err => console.log("Error posting ticket", err))
+}
+
+export const editData = (id) => dispatch => {
+    axiosWithAuth()
+        .put(`/api/tickets/${id}/students/`)
+        .then(res => {
+            console.log(res)
+            dispatch({
+                type: EDIT_DATA,
+                payload: res.data
+            })
+        })
+}
+
+export const deleteData = (id) => dispatch => {
+    axiosWithAuth()
+        .delete(`/api/tickets/${id}/students`)
+        .then(res => {
+            console.log(res)
+            dispatch({
+                type: DELETE_DATA,
+            })
+        })
 }

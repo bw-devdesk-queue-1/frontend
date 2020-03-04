@@ -12,6 +12,7 @@ function IssueList(props) {
 
   return (
     <Container>
+      <button onClick={props.getData}>Refresh Issue List</button>
       <Link to="/createIssue">Create New Issue</Link>
       <Switch>
         <Route exact path={`${match.path}`}>

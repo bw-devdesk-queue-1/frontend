@@ -1,4 +1,4 @@
-import { LOADING, LOGIN, REGISTER, GET_DATA, POST_DATA } from '../actions';
+import { LOADING, LOGIN, REGISTER, GET_DATA, POST_DATA, EDIT_DATA, DELETE_DATA } from '../actions';
 
 export const initialState = {
     credentials: {},
@@ -36,6 +36,16 @@ export const loginReducer = (state = initialState, action) => {
             return {
                 ...state,
                 data: [...state.data, action.payload]
+            }
+        case EDIT_DATA:
+            return {
+                ...state,
+                data: [...state.data]
+            }
+        case DELETE_DATA:
+            return {
+                ...state,
+                data: [...state.data]
             }
         default:
             return state;

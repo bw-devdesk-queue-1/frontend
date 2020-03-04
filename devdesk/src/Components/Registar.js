@@ -43,7 +43,11 @@ function Registar(props) {
                     <FormControlLabel type='number' value='0' control={<Radio />} label='Student' />
                 </RadioGroup>
 
-                <Button onClick={() => props.register(account)} size='large' variant='contained' color='primary'>
+                <Button onClick={() => {
+                    props.register(account)
+                    props.history.push('/')
+                }}
+                    size='large' variant='contained' color='primary'>
                     Create Account
         </Button>
             </Grid>

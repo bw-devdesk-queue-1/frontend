@@ -12,7 +12,6 @@ import CreateIssue from "./Components/CreateIssue";
 function App(props) {
   return (
     <div className="App">
-      <button onClick={props.getData}>Refresh Issue List</button>
       <Switch>
         <PrivateRoute
           path="/issues"

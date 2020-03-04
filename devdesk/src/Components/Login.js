@@ -6,25 +6,26 @@ import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 
 const getLogin = {
-    username: '',
-    password: '',
+  username: '',
+  password: '',
 }
 
 
-function Login(props){
-    const [user,setUser] = useState(getLogin);
-    const iChangeStuff = event => {
-        setUser({...user, [event.target.name]: event.target.value})
-    }
+function Login(props) {
+  const [user, setUser] = useState(getLogin);
+  const iChangeStuff = event => {
+    setUser({ ...user, [event.target.name]: event.target.value })
+  }
 
-    console.log(user)
+  console.log(user)
+  console.log(props)
 
 
-    return(
-        
-        
-        <form>
-        <Grid 
+  return (
+
+
+    <form>
+      <Grid
         container
         direction="column"
         justify="space-between"
@@ -37,11 +38,15 @@ function Login(props){
           Student
         </Button>
 
-        <TextField id='outlined-basic' label='username' name="username" variant='outlined'  onChange={event => iChangeStuff(event)}/>
+        <TextField id='outlined-basic' label='username' name="username" variant='outlined' onChange={event => iChangeStuff(event)} />
         <TextField id='outlined-basic' label='password' name="password" variant='outlined' onChange={event => iChangeStuff(event)} />
 
-        <Button onClick={() => props.login(user)} size='large' variant='contained' color='primary'>
-        Login
+        <Button onClick={() => {
+          props.login(user)
+          props.history.push('/issues')
+        }}
+          size='large' variant='contained' color='primary'>
+          Login
         </Button>
       </Grid>
     </form>

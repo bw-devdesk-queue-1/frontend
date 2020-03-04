@@ -1,6 +1,6 @@
 {
     "version": 2,
-    "name": "frontend",
+    "name": "devdesk",
     "builds": [{
         "src": "devdesk/package.json",
         "use": "@now/static-build",

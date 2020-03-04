@@ -47,6 +47,9 @@ function IssueList(props) {
       <Switch>
         <Route exact path={`${match.path}`}>
           <Breadcrumbs>
+              <Link color="inherit" component={RouterLink} to={`/`}>
+                Home
+              </Link>
             <Typography color="textPrimary">Issues</Typography>
           </Breadcrumbs>
 

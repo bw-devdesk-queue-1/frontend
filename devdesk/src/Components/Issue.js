@@ -24,6 +24,9 @@ export default function Issue(props) {
   return (
     <>
       <Breadcrumbs>
+        <Link color="inherit" component={RouterLink} to={`/`}>
+          Home
+        </Link>
         <Link color="inherit" component={RouterLink} to={`/issues`}>
           Issues
         </Link>

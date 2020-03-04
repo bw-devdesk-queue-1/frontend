@@ -52,7 +52,7 @@ const CreateIssue = (props) => {
                 <input type="text" name="tried" onChange={handleChanges} />
                 <label htmlFor="category"></label>
                 <select type="text" name="category" onChange={handleChanges}>
-                    <option value="" defaultValue disabled hidden>Choose a Category</option>
+                    <option value="" defaultValue selected>Choose a Category</option>
                     <option value="Git">Git</option>
                     <option value="Express">Express</option>
                     <option value="React">React</option>

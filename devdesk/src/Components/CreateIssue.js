@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Divider } from '@material-ui/core';
-import axios from 'axios';
 import { postData } from '../actions'
 import { connect } from 'react-redux'
 

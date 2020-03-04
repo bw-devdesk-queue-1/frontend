@@ -1,5 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Container, Link, Grid, Paper } from "@material-ui/core";
+import {
+  Container,
+  Link,
+  Grid,
+  Paper,
+  Breadcrumbs,
+  Typography,
+  Button
+} from "@material-ui/core";
 import IssueCard from "./IssueCard";
 import Issue from "./Issue";
 import { getData } from "../actions";
@@ -40,18 +48,56 @@ function IssueList(props) {
 
   return (
     <Container>
-      <button onClick={props.getData}>Refresh Issue List</button>
-      <Link component={RouterLink} to="/createIssue">
-        Create New Issue
-      </Link>
-      <Categories categories={categories} match={match} />
       <Switch>
         <Route exact path={`${match.path}`}>
-          {filtered !== null ? (
-            filtered.map(issue => <IssueCard key={issue.id} {...issue} />)
-          ) : (
+          <Breadcrumbs>
+            <Link color="inherit" component={RouterLink} to={`/`}>
+              Home
+            </Link>
+            <Typography color="textPrimary">Issues</Typography>
+          </Breadcrumbs>
+
+          <Grid
+            container
+            justify="space-between"
+            alignItems="center"
+            spacing={2}
+          >
+            <Grid item>
+              <Categories categories={categories} match={match} />
+            </Grid>
+            <Grid item>
+              <Grid container spacing={1}>
+                <Grid item>
+                  <Button variant="contained" onClick={props.getData}>
+                    Refresh
+                  </Button>
+                </Grid>
+                <Grid item>
+                  <Button
+                    component={RouterLink}
+                    variant="contained"
+                    color="primary"
+                    to="/createIssue"
+                  >
+                    Create New Issue
+                  </Button>
+                </Grid>
+              </Grid>
+            </Grid>
+          </Grid>
+
+          <Grid container justify="center" spacing={2}>
+            {filtered !== null ? (
+              filtered.map(issue => (
+                <Grid item key={issue.ticket.id}>
+                  <IssueCard {...issue} />
+                </Grid>
+              ))
+            ) : (
               <p>Loading...</p>
             )}
+          </Grid>
         </Route>
         <Route
           path={`${match.path}/:id`}

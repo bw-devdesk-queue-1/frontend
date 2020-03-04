@@ -83,9 +83,9 @@ export const postData = (id, postTicket) => dispatch => {
         .catch(err => console.log("Error posting ticket", err))
 }
 
-export const editData = (id) => dispatch => {
+export const editData = (id, edits) => dispatch => {
     axiosWithAuth()
-        .put(`/api/tickets/${id}/students/`)
+        .put(`/api/tickets/${id}/students/`, edits)
         .then(res => {
             console.log(res)
             dispatch({

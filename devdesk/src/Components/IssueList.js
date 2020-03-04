@@ -95,8 +95,8 @@ function IssueList(props) {
                 </Grid>
               ))
             ) : (
-              <p>Loading...</p>
-            )}
+                <p>Loading...</p>
+              )}
           </Grid>
         </Route>
         <Route

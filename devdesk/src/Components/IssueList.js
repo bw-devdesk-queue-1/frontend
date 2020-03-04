@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Container, Link, Grid, Paper } from "@material-ui/core";
+import { Container, Link, Grid, Paper, Breadcrumbs, Typography } from "@material-ui/core";
 import IssueCard from "./IssueCard";
 import Issue from "./Issue";
 import { getData } from "../actions";
@@ -46,7 +46,12 @@ function IssueList(props) {
       </Link>
       <Switch>
         <Route exact path={`${match.path}`}>
+          <Breadcrumbs>
+            <Typography color="textPrimary">Issues</Typography>
+          </Breadcrumbs>
+
           <Categories categories={categories} match={match} />
+
           <Grid container justify="center" spacing={2}>
             {filtered !== null ? (
               filtered.map(issue => (

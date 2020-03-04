@@ -1,5 +1,11 @@
 import React from "react";
-import { Container, Card, Link } from "@material-ui/core";
+import {
+  Container,
+  Card,
+  Link,
+  Breadcrumbs,
+  Typography
+} from "@material-ui/core";
 import { useParams } from "react-router-dom";
 import { Link as RouterLink } from "react-router-dom";
 
@@ -17,10 +23,19 @@ export default function Issue(props) {
 
   return (
     <>
+      <Breadcrumbs>
+        <Link color="inherit" component={RouterLink} to={`/issues`}>
+          Issues
+        </Link>
+        <Typography color="textPrimary">{params.id}</Typography>
+      </Breadcrumbs>
+
       {issue !== null && issue !== undefined ? (
         <Card>
           <h2>
-            <Link component={RouterLink} to={`/issues/${issue.ticket.id}`}>{issue.ticket.title}</Link>
+            <Link component={RouterLink} to={`/issues/${issue.ticket.id}`}>
+              {issue.ticket.title}
+            </Link>
           </h2>
           <div>{issue.ticket.description}</div>
 

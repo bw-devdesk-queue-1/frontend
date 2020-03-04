@@ -60,7 +60,7 @@ export const getData = () => dispatch => {
     })
     axiosWithAuth()
         .get("/api/tickets/")
-        .then(res => {
+        .then(async res => {
             dispatch({
                 type: GET_DATA,
                 payload: res.data
@@ -87,7 +87,6 @@ export const editData = (id, edits) => dispatch => {
     axiosWithAuth()
         .put(`/api/tickets/${id}/students/`, edits)
         .then(res => {
-            console.log(res)
             dispatch({
                 type: EDIT_DATA,
                 payload: res.data

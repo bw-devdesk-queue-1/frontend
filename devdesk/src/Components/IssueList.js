@@ -47,13 +47,17 @@ function IssueList(props) {
       <Categories categories={categories} match={match} />
       <Switch>
         <Route exact path={`${match.path}`}>
-          {filtered !== null ? (
-            filtered.map(issue => (
-              <IssueCard key={issue.ticket.id} {...issue} />
-            ))
-          ) : (
-            <p>Loading...</p>
-          )}
+          <Grid container justify="center" spacing={2}>
+            {filtered !== null ? (
+              filtered.map(issue => (
+                <Grid item key={issue.ticket.id}>
+                  <IssueCard {...issue} />
+                </Grid>
+              ))
+            ) : (
+              <p>Loading...</p>
+            )}
+          </Grid>
         </Route>
         <Route
           path={`${match.path}/:id`}

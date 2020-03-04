@@ -38,7 +38,7 @@ function IssueList(props) {
   useEffect(() => {
     if (issues !== null && queryParams.category !== undefined) {
       const newFiltered = issues.filter(x =>
-        x.category.toLowerCase().includes(queryParams.category.toLowerCase())
+        x.ticket.category.toLowerCase().includes(queryParams.category.toLowerCase())
       );
       setFiltered(newFiltered);
     } else {

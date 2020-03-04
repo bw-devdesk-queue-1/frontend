@@ -43,7 +43,7 @@ function Login(props) {
 
         <Button onClick={() => {
           props.login(user)
-          props.history.push('/issues')
+          props.history.push("/issues")
         }}
           size='large' variant='contained' color='primary'>
           Login

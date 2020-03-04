@@ -5,6 +5,12 @@ import { deleteData } from "../actions";
 import { connect } from "react-redux";
 
 function IssueCard(props) {
+
+  const deleteIssue = (id) => {
+    props.deleteData(id)
+  }
+
+
   return (
     <Card>
       <h2>

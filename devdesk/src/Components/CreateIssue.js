@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Divider } from '@material-ui/core';
+import { Container, Divider, Breadcrumbs, Typography, Link} from '@material-ui/core';
+import { Link as RouterLink } from "react-router-dom";
 import { postData } from '../actions'
 import { connect } from 'react-redux'
 
@@ -30,7 +31,17 @@ const CreateIssue = (props) => {
 
 
     return (
-        <div>
+        <Container>
+            <Breadcrumbs>
+              <Link color="inherit" component={RouterLink} to={`/`}>
+                Home
+              </Link>
+              <Link color="inherit" component={RouterLink} to={`/issues`}>
+                Issues
+              </Link>
+              <Typography color="textPrimary">New Issue</Typography>
+            </Breadcrumbs>
+
             <form onSubmit={handleSubmit}>
                 <label htmlFor="title"></label>
                 <input type="text" name="title" onChange={handleChanges} />
@@ -42,7 +53,7 @@ const CreateIssue = (props) => {
                 <input type="text" name="category" onChange={handleChanges} />
                 <button>Submit</button>
             </form>
-        </div>
+        </Container>
     )
 }
 

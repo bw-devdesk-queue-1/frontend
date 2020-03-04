@@ -1,15 +1,21 @@
-import React, { useState } from "react";
+import React from "react";
 import { Card } from "@material-ui/core";
 import { Link } from "react-router-dom";
-
-import {getData} from '../actions'
 
 export default function IssueCard(props) {
   return (
     <Card>
-    Issue Card Test
-      <h2><Link to={`/issues/${props.id}`}>{props.title}</Link></h2>
-      <div>{props.content}</div>
+      <h2>
+        <Link to={`/issues/${props.id}`}>{props.title}</Link>
+      </h2>
+      <h3>Description</h3>
+      <div>{props.description}</div>
+
+      <h3>Tried</h3>
+      <div>{props.tried}</div>
+
+      <h3>Category</h3>
+      <div>{props.category}</div>
     </Card>
   );
 }

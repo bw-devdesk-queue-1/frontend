@@ -1,14 +1,28 @@
 import React from "react";
 import { Container } from "@material-ui/core";
-import IssueCard from "./IssueCard.js";
+import IssueCard from "./IssueCard";
+import Issue from "./Issue";
+import { Switch, Route } from "react-router-dom";
 
-export default function Queue({ issues }) {
-  console.log(issues)
+export default function IssueList(props) {
+  const { match } = props;
+  const issues = props.issues || null;
+
   return (
     <Container>
-      {issues.map(issue => (
-        <IssueCard key={issue.id} {...issue} />
-      ))}
+      <Switch>
+        <Route exact path={`${match.path}`}>
+          {issues !== null ? (
+            issues.map(issue => <IssueCard key={issue.id} {...issue} />)
+          ) : (
+            <p>Loading...</p>
+          )}
+        </Route>
+        <Route
+          path={`${match.path}/:id`}
+          render={renderProps => <Issue {...renderProps} issues={issues} />}
+        />
+      </Switch>
     </Container>
   );
 }

@@ -1,30 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "./App.css";
 import { Route, Switch } from "react-router-dom";
-import {connect} from 'react-redux';
-import {getData} from './actions';
-import PrivateRoute from './Components/PrivateRoute';
+import { connect } from "react-redux";
+import { getData } from "./actions";
 import Login from "./Components/Login";
-import Issue from "./Components/Issue.js";
 import IssueList from "./Components/IssueList";
 import Registar from "./Components/Registar";
 
 function App(props) {
-  
-  console.log(props.data)
- 
-
   return (
     <div className="App">
-    <button onClick={props.getData}>Refresh Issue List</button>
+      <button onClick={props.getData}>Refresh Issue List</button>
       <Switch>
         <Route
-          path="/issues/:id"
-          render={props => <Issue {...props} issues={props.data} />}
-        />
-        <Route
           path="/issues"
-          render={props => <IssueList {...props} issues={props.data} />}
+          render={renderProps => (
+            <IssueList {...renderProps} issues={props.issues} />
+          )}
         />
         <Route path="/registar" component={Registar} />
         <Route exact path="/" component={Login} />
@@ -34,10 +26,9 @@ function App(props) {
 }
 
 const mapStateToProps = state => {
-  console.log(state.data)
   return {
-    data: [state.data]
-  }
-}
+    issues: state.data
+  };
+};
 
-export default connect(mapStateToProps, {getData})(App);
+export default connect(mapStateToProps, { getData })(App);

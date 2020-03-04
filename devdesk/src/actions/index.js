@@ -27,6 +27,9 @@ export const login = (credentials) => dispatch => {
                 payload: res.data
             })
             window.localStorage.setItem("token", res.data.token)
+            window.localStorage.setItem("username", res.data.username)
+            window.localStorage.setItem("userType", res.data.userType)
+            window.localStorage.setItem("id", res.data.id)
 
 
         })
@@ -68,14 +71,15 @@ export const getData = () => dispatch => {
 
 export const postData = (id, postTicket) => dispatch => {
     console.log(postTicket)
-    axios
-        .post(`https://dev2desk.herokuapp.com/api/tickets/students/${id}`, postTicket)
+    axiosWithAuth()
+        .post(`/api/tickets/students/${id}`, postTicket)
         .then(res => {
             console.log(res)
             dispatch({
                 type: POST_DATA,
                 payload: postTicket
             })
+            this.props.history.push('/issues')
         })
         .catch(err => console.log("Error posting ticket", err))
 }

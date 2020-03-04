@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Divider } from '@material-ui/core';
 import axios from 'axios';
 import { postData } from '../actions'
+import { connect } from 'react-redux'
 
 const initialState = {
     title: '',
@@ -10,7 +11,7 @@ const initialState = {
     category: ''
 }
 
-const CreateIssue = () => {
+const CreateIssue = (props) => {
     const [createIssue, setCreateIssue] = useState(initialState)
 
     const handleChanges = e => {
@@ -20,10 +21,18 @@ const CreateIssue = () => {
         })
     }
 
+    console.log(createIssue)
+
+    const handleSubmit = e => {
+        e.preventDefault();
+        props.postData(5, createIssue)
+    }
+
+
 
     return (
         <div>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <label htmlFor="title"></label>
                 <input type="text" name="title" onChange={handleChanges} />
                 <label htmlFor="description"></label>
@@ -38,4 +47,11 @@ const CreateIssue = () => {
     )
 }
 
-export default CreateIssue;
+const mapStateToProps = state => {
+    return {
+        issues: [...state.data, postData]
+    }
+}
+
+
+export default connect(mapStateToProps, { postData })(CreateIssue);

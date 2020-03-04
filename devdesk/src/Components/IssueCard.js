@@ -2,8 +2,9 @@ import React from "react";
 import { Card } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { deleteData } from "../actions"
+import { connect } from 'react-redux';
 
-export default function IssueCard(props) {
+function IssueCard(props) {
 
 
   return (
@@ -22,8 +23,16 @@ export default function IssueCard(props) {
 
       <div>
         <button>Edit</button>
-        <button onClick={deleteData(props.id)}>Delete</button>
+        <button onClick={() => props.deleteData(props.id)}>Delete</button>
       </div>
     </Card>
   );
 }
+
+const mapStateToProps = state => {
+  return {
+    issues: [...state.data]
+  }
+}
+
+export default connect(mapStateToProps, { deleteData })(IssueCard)

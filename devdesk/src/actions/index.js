@@ -79,7 +79,6 @@ export const postData = (id, postTicket) => dispatch => {
                 type: POST_DATA,
                 payload: postTicket
             })
-            this.props.history.push('/issues')
         })
         .catch(err => console.log("Error posting ticket", err))
 }

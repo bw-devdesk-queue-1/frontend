@@ -6,6 +6,10 @@ import { connect } from 'react-redux';
 
 function IssueCard(props) {
 
+  const deleteIssue = (id) => {
+    props.deleteData(id)
+  }
+
 
   return (
     <Card>
@@ -23,7 +27,7 @@ function IssueCard(props) {
 
       <div>
         <button>Edit</button>
-        <button onClick={() => props.deleteData(props.ticket.id)}>Delete</button>
+        <button onClick={() => deleteIssue(props.ticket.id)}>Delete</button>
       </div>
     </Card>
   );

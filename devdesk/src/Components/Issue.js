@@ -1,9 +1,12 @@
 import React from "react";
 import {
-  Container,
+  Paper,
   Card,
-  Link,
+  CardContent,
+  CardActions,
   Breadcrumbs,
+  Button,
+  Link,
   Typography
 } from "@material-ui/core";
 import { useParams } from "react-router-dom";
@@ -44,31 +47,31 @@ function Issue(props) {
 
       {issue !== null && issue !== undefined ? (
         <Card>
-          <h2>
-            <Link component={RouterLink} to={`/issues/${issue.ticket.id}`}>
-              {issue.ticket.title}
-            </Link>
-          </h2>
-          <div>{issue.ticket.description}</div>
+          <CardContent>
+            <Typography variant="h2">{issue.ticket.title}</Typography>
+            <Typography variant="body1">{issue.ticket.description}</Typography>
 
-          <h3>Tried</h3>
-          <div>{issue.ticket.tried}</div>
+            <Typography variant="h3">Tried</Typography>
+            <div>{issue.ticket.tried}</div>
 
-          <h3>Category</h3>
-          <div>{issue.ticket.category}</div>
+            <Typography variant="h3">Category</Typography>
+            <Typography>{issue.ticket.category}</Typography>
+          </CardContent>
 
-          <div>
+          <CardActions>
             <RouterLink to={`/updateIssue/${issue.ticket.id}`}>Edit</RouterLink>
-            <button onClick={() => deleteIssue(issue.ticket.id)}>
+            <button onClick={() => props.deleteData(issue.ticket.id)}>
               Delete
             </button>
-          </div>
+          </CardActions>
         </Card>
       ) : (
-          <Card>
-            <p>Loading...</p>
-          </Card>
-        )}
+        <Card textAlign="center">
+          <CardContent>
+            <Typography variant="h6">Loading...</Typography>
+          </CardContent>
+        </Card>
+      )}
     </>
   );
 }

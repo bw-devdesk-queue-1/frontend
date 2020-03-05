@@ -86,11 +86,6 @@ function IssueList(props) {
                   </Button>
                 </Grid>
                 <Grid item>
-                  <Button variant="contained" onClick={clearFilter}>
-                    Clear Filter
-                  </Button>
-                </Grid>
-                <Grid item>
                   <Button
                     component={RouterLink}
                     variant="contained"

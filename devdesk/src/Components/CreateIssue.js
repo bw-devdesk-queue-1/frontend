@@ -68,11 +68,4 @@ const CreateIssue = (props) => {
     )
 }
 
-const mapStateToProps = state => {
-    return {
-        issues: [...state.data, postData]
-    }
-}
-
-
-export default connect(mapStateToProps, { postData })(CreateIssue);
+export default connect(null, { postData })(CreateIssue);

@@ -28,6 +28,8 @@ function Issue(props) {
     props.history.push("/issues")
   }
 
+  console.log(issue)
+
   return (
     <>
       <Breadcrumbs>

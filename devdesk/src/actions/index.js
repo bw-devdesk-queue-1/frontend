@@ -77,7 +77,7 @@ export const postData = (id, postTicket) => dispatch => {
             console.log(res)
             dispatch({
                 type: POST_DATA,
-                payload: postTicket
+                payload: res.data
             })
         })
         .catch(err => console.log("Error posting ticket", err))
@@ -101,6 +101,7 @@ export const deleteData = (id) => dispatch => {
             console.log(res)
             dispatch({
                 type: DELETE_DATA,
+                payload: res.data
             })
         })
 }

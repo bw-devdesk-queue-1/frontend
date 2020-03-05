@@ -51,6 +51,8 @@ function IssueList(props) {
     props.history.push("/issues")
   }
 
+  console.log(issues)
+
   return (
     <Container>
       <Switch>

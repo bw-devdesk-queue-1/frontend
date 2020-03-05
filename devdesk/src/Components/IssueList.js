@@ -72,7 +72,11 @@ function IssueList(props) {
             spacing={2}
           >
             <Grid item>
-              <Categories categories={categories} match={match} />
+              <Categories
+                categories={categories}
+                match={match}
+                activeCategory={queryParams.category}
+              />
             </Grid>
             <Grid item>
               <Grid container spacing={1}>
@@ -133,16 +137,28 @@ const useStyles = makeStyles({
   category: {
     padding: "1%",
     margin: "5px"
+  },
+  active: {
+    backgroundColor: "blue"
   }
 });
 
 function Categories(props) {
   const classes = useStyles();
+
+  const isActive = category =>
+    props.activeCategory !== undefined &&
+    category.toLowerCase() === props.activeCategory.toLowerCase();
+
+  const activeClass = `${classes.category} ${classes.active}`;
   if (props.categories !== null) {
     return (
       <Grid container justify="center">
         {props.categories.map((category, idx) => (
-          <Paper key={idx} className={classes.category}>
+          <Paper
+            key={idx}
+            className={isActive(category) ? activeClass : classes.category}
+          >
             <Link
               component={RouterLink}
               to={`${props.match.url}?category=${category}`}

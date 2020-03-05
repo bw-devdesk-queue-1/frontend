@@ -45,23 +45,23 @@ function Login(props) {
         <div className='loginForm'>
           <h1>Welcome!</h1>
           <div className='boxes'>
-            <div className='formFields'>
-              <TextField id='outlined-basic' label='username' name="username" variant='outlined' onChange={event => iChangeStuff(event)} />
-              <TextField id='outlined-basic' label='password' name="password" variant='outlined' onChange={event => iChangeStuff(event)} />
-            </div>
-            <Button onClick={() => {
-              if (user.username < 1 && user.password < 1) {
-                return alert('Please enter your login information to continue')
-              } else {
-                props.login(user)
-                setTimeout(() => {
-                  props.history.push("/issues")
-                }, 500)
-              }
-            }
-            }
-              size='large' variant='contained' color='primary' id='loginButton'>
-              Login
+          <div className='formFields'>
+        <TextField id='outlined-basic' label='username' name="username" variant='outlined' onChange={event => iChangeStuff(event)} />
+        <TextField id='outlined-basic' label='password' type ='password'  name="password" variant='outlined' onChange={event => iChangeStuff(event)} />
+        </div>
+        <Button onClick={(e) => {
+          if(user.username < 1 && user.password < 1){
+            e.preventDefault();
+            return alert('Please enter your login information to continue')
+          } else {
+            props.login(user)
+            setTimeout(() => {
+              props.history.push("/issues")
+            }, 500)
+          }
+        }}
+          size='large' variant='contained' color='primary' id='loginButton'>
+          Login
         </Button>
           </div>
 

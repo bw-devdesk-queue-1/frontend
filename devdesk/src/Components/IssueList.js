@@ -60,9 +60,14 @@ function IssueList(props) {
     }
   }
 
+  const logout = () => {
+    window.localStorage.clear();
+    props.history.push("/")
+  }
+
   // Load data when the app first starts
   useEffect(() => {
-      filterByUserType();
+    filterByUserType();
   }, []);
 
   return (
@@ -105,6 +110,16 @@ function IssueList(props) {
                     to="/createIssue"
                   >
                     Create New Issue
+                  </Button>
+                </Grid>
+                <Grid item>
+                  <Button
+                    onClick={() => logout()}
+                    variant="contained"
+                    color="secondary"
+                    to="/createIssue"
+                  >
+                    Logout
                   </Button>
                 </Grid>
               </Grid>

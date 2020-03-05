@@ -1,0 +1,51 @@
+form{
+    background: #bfe8ea;
+    width: 100%;
+    height: 100vh;
+}
+.flexMe{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10%;
+}
+
+img{
+    max-width: 50%;
+}
+
+
+.mainContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    
+
+        .radioContainer{
+            padding-top: 1%;
+        }
+}
+#outlined-basic{
+    background: whitesmoke;
+    
+    
+}
+
+.inputArea{
+    margin-top: 2%;
+}
+
+
+
+.bottomRedirect{
+    padding-top: 4%;
+
+}
+.counterP{
+    font-size: 2rem;
+}
+.helping{
+    color: #125280;
+    font-weight: 900;
+}

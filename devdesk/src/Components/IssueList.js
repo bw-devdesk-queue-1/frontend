@@ -60,6 +60,11 @@ function IssueList(props) {
     }
   }
 
+  // Load data when the app first starts
+  useEffect(() => {
+      filterByUserType();
+  }, []);
+
   return (
     <Container>
       <Switch>

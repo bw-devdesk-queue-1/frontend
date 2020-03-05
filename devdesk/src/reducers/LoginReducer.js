@@ -45,7 +45,7 @@ export const loginReducer = (state = initialState, action) => {
         case DELETE_DATA:
             return {
                 ...state,
-                data: [state.data]
+                data: [...state.data]
             }
         default:
             return state;

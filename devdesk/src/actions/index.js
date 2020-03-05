@@ -113,7 +113,7 @@ export const deleteData = (id) => dispatch => {
             console.log(res)
             dispatch({
                 type: DELETE_DATA,
-                payload: res.data
+                payload: [res.data]
             })
         })
 }

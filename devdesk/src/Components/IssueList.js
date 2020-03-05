@@ -46,6 +46,11 @@ function IssueList(props) {
     }
   }, [issues, queryParams.category]);
 
+  const clearFilter = () => {
+    setFiltered(issues);
+    props.history.push("/issues")
+  }
+
   return (
     <Container>
       <Switch>
@@ -74,6 +79,11 @@ function IssueList(props) {
                   </Button>
                 </Grid>
                 <Grid item>
+                  <Button variant="contained" onClick={clearFilter}>
+                    Clear Filter
+                  </Button>
+                </Grid>
+                <Grid item>
                   <Button
                     component={RouterLink}
                     variant="contained"
@@ -95,8 +105,8 @@ function IssueList(props) {
                 </Grid>
               ))
             ) : (
-              <p>Loading...</p>
-            )}
+                <p>Loading...</p>
+              )}
           </Grid>
         </Route>
         <Route

@@ -8,8 +8,10 @@ import {
 } from "@material-ui/core";
 import { useParams } from "react-router-dom";
 import { Link as RouterLink } from "react-router-dom";
+import { deleteData } from "../actions"
+import { connect } from 'react-redux';
 
-export default function Issue(props) {
+function Issue(props) {
   const params = useParams();
   let issue = null;
   if (props.issues !== null) {
@@ -19,6 +21,11 @@ export default function Issue(props) {
     //
     // Or something like that.
     issue = props.issues.filter(x => x.ticket.id.toString() === params.id)[0];
+  }
+
+  const deleteIssue = (id) => {
+    props.deleteData(id)
+    props.history.push("/issues")
   }
 
   return (
@@ -49,17 +56,25 @@ export default function Issue(props) {
           <div>{issue.ticket.category}</div>
 
           <div>
-            <button>Edit</button>
-            <button onClick={() => props.deleteData(issue.ticket.id)}>
+            <RouterLink to={`/updateIssue/${issue.ticket.id}`}>Edit</RouterLink>
+            <button onClick={() => deleteIssue(issue.ticket.id)}>
               Delete
             </button>
           </div>
         </Card>
       ) : (
-        <Card>
-          <p>Loading...</p>
-        </Card>
-      )}
+          <Card>
+            <p>Loading...</p>
+          </Card>
+        )}
     </>
   );
 }
+
+const mapStateToProps = state => {
+  return {
+    issues: [...state.data]
+  }
+}
+
+export default connect(mapStateToProps, { deleteData })(Issue)

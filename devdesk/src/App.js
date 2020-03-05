@@ -8,6 +8,7 @@ import Login from "./Components/Login";
 import IssueList from "./Components/IssueList";
 import Registar from "./Components/Registar";
 import CreateIssue from "./Components/CreateIssue";
+import UpdateIssue from "./Components/UpdateIssue";
 
 function App(props) {
   return (
@@ -18,6 +19,7 @@ function App(props) {
           component={IssueList} />
         />
         <PrivateRoute path="/createIssue" component={CreateIssue} />
+        <PrivateRoute path="/updateIssue/:id" component={UpdateIssue} />
         <Route path="/registar" component={Registar} />
         <Route exact path="/" component={Login} />
       </Switch>

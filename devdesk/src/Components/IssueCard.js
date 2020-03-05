@@ -6,10 +6,6 @@ import { connect } from "react-redux";
 
 function IssueCard(props) {
 
-  const deleteIssue = (id) => {
-    props.deleteData(id)
-  }
-
 
   return (
     <Card>
@@ -24,9 +20,9 @@ function IssueCard(props) {
 }
 
 const mapStateToProps = state => {
-  return {
-    issues: [...state.data]
-  };
+  // return {
+  //   issues: [...state.data]
+  // };
 };
 
 export default connect(mapStateToProps, { deleteData })(IssueCard);

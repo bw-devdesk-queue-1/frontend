@@ -10,7 +10,7 @@ import {
 import IssueCard from "./IssueCard";
 import Issue from "./Issue";
 import Categories from "./Categories";
-import { getData } from "../actions";
+import { getStudentData, getAllData } from "../actions";
 import { connect } from "react-redux";
 import { Switch, Route, Link as RouterLink } from "react-router-dom";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
@@ -48,12 +48,17 @@ function IssueList(props) {
     }
   }, [issues, queryParams.category]);
 
-  const clearFilter = () => {
-    setFiltered(issues);
-    props.history.push("/issues");
-  };
 
   const studentId = (Number(window.localStorage.getItem("id")))
+  const userType = (Number(window.localStorage.getItem("userType")))
+
+  const filterByUserType = () => {
+    if (userType === 0) {
+      props.getStudentData(studentId);
+    } else {
+      props.getAllData();
+    }
+  }
 
   return (
     <Container>
@@ -83,7 +88,7 @@ function IssueList(props) {
             <Grid item>
               <Grid container spacing={1}>
                 <Grid item>
-                  <Button variant="contained" onClick={() => props.getData(studentId)}>
+                  <Button variant="contained" onClick={() => filterByUserType()}>
                     Refresh
                   </Button>
                 </Grid>
@@ -128,4 +133,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { getData })(IssueList);
+export default connect(mapStateToProps, { getStudentData, getAllData })(IssueList);

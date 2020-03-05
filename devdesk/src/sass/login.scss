@@ -1,0 +1,39 @@
+.loginContainer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+
+    .loginForm{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        width: 30%;
+        
+        .formFields{
+            width: 50%;
+        }
+
+    }
+}
+
+#loginButton{
+    margin-right: 50%;
+    margin-top: 2%;
+}
+
+.redirectToCreate{
+    margin-left: 0%;
+}
+
+
+img{
+    margin-top: 5%;
+}
+.boxes{
+    margin-left: 33%;
+}
+#outlined-basic{
+    margin: 2%;
+    
+}

@@ -54,19 +54,31 @@ export const register = (credentials) => dispatch => {
         .catch(err => console.log("Could not complete registration", err));
 }
 
-export const getData = () => dispatch => {
+export const getStudentData = (id) => dispatch => {
     dispatch({
         type: LOADING
     })
     axiosWithAuth()
-        .get("/api/tickets/")
-        .then(async res => {
+        .get(`/api/tickets/students/${id}`)
+        .then(res => {
+            console.log(res)
             dispatch({
                 type: GET_DATA,
                 payload: res.data
             })
         })
         .catch(err => console.log("Error fetching data", err))
+}
+
+export const getAllData = () => dispatch => {
+    axiosWithAuth()
+        .get(`/api/tickets`)
+        .then(res => {
+            dispatch({
+                type: GET_DATA,
+                payload: res.data
+            })
+        })
 }
 
 export const postData = (id, postTicket) => dispatch => {
@@ -77,7 +89,7 @@ export const postData = (id, postTicket) => dispatch => {
             console.log(res)
             dispatch({
                 type: POST_DATA,
-                payload: postTicket
+                payload: res.data
             })
         })
         .catch(err => console.log("Error posting ticket", err))
@@ -101,6 +113,7 @@ export const deleteData = (id) => dispatch => {
             console.log(res)
             dispatch({
                 type: DELETE_DATA,
+                payload: res.data
             })
         })
 }

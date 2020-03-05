@@ -29,13 +29,13 @@ export const loginReducer = (state = initialState, action) => {
         case GET_DATA:
             return {
                 ...state,
-                data: action.payload,
+                data: action.payload
                 // isLoading: true
             }
         case POST_DATA:
             return {
                 ...state,
-                data: [...state.data, action.payload]
+                data: action.payload
             }
         case EDIT_DATA:
             return {

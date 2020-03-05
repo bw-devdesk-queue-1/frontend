@@ -3,7 +3,7 @@ import "./App.css";
 import { Route, Switch } from "react-router-dom";
 import { PrivateRoute } from './Components/PrivateRoute';
 import { connect } from "react-redux";
-import { getData } from "./actions";
+// import { getData } from "./actions";
 import Login from "./Components/Login";
 import IssueList from "./Components/IssueList";
 import Registar from "./Components/Registar";
@@ -33,4 +33,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { getData })(App);
+export default connect(mapStateToProps, {})(App);

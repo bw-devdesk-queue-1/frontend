@@ -60,18 +60,18 @@ function Issue(props) {
 
           <CardActions>
             <RouterLink to={`/updateIssue/${issue.ticket.id}`}>Edit</RouterLink>
-            <button onClick={() => props.deleteData(issue.ticket.id)}>
+            <button onClick={() => deleteIssue(issue.ticket.id)}>
               Delete
             </button>
           </CardActions>
         </Card>
       ) : (
-        <Card textAlign="center">
-          <CardContent>
-            <Typography variant="h6">Loading...</Typography>
-          </CardContent>
-        </Card>
-      )}
+          <Card textAlign="center">
+            <CardContent>
+              <Typography variant="h6">Loading...</Typography>
+            </CardContent>
+          </Card>
+        )}
     </>
   );
 }

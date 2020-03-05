@@ -110,10 +110,9 @@ export const deleteData = (id) => dispatch => {
     axiosWithAuth()
         .delete(`/api/tickets/${id}/students`)
         .then(res => {
-            console.log(res)
+            console.log(res.data)
             dispatch({
                 type: DELETE_DATA,
-                payload: res.data
             })
         })
 }

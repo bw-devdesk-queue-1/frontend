@@ -54,7 +54,7 @@ function IssueList(props) {
     props.history.push("/issues");
   };
 
-  console.log(issues)
+  const studentId = (Number(window.localStorage.getItem("id")))
 
   return (
     <Container>
@@ -83,7 +83,7 @@ function IssueList(props) {
             <Grid item>
               <Grid container spacing={1}>
                 <Grid item>
-                  <Button variant="contained" onClick={props.getData}>
+                  <Button variant="contained" onClick={() => props.getData(studentId)}>
                     Refresh
                   </Button>
                 </Grid>
@@ -114,8 +114,8 @@ function IssueList(props) {
                 </Grid>
               ))
             ) : (
-              <p>Loading...</p>
-            )}
+                <p>Loading...</p>
+              )}
           </Grid>
         </Route>
         <Route

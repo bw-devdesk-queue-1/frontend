@@ -54,13 +54,14 @@ export const register = (credentials) => dispatch => {
         .catch(err => console.log("Could not complete registration", err));
 }
 
-export const getData = () => dispatch => {
+export const getData = (studentId) => dispatch => {
     dispatch({
         type: LOADING
     })
     axiosWithAuth()
-        .get("/api/tickets/")
-        .then(async res => {
+        .get(`/api/tickets/students/${studentId}`)
+        .then(res => {
+            console.log(res)
             dispatch({
                 type: GET_DATA,
                 payload: res.data

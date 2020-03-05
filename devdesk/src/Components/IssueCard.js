@@ -1,20 +1,28 @@
 import React from "react";
-import { Card, Link } from "@material-ui/core";
+import {
+  Card,
+  CardContent,
+  CardActions,
+  Button,
+  Link,
+  Typography
+} from "@material-ui/core";
 import { Link as RouterLink } from "react-router-dom";
 import { deleteData } from "../actions";
 import { connect } from "react-redux";
 
 function IssueCard(props) {
-
-
   return (
     <Card>
-      <h2>
-        <Link component={RouterLink} to={`/issues/${props.ticket.id}`}>
-          {props.ticket.title}
-        </Link>
-      </h2>
-      <div>{props.ticket.description}</div>
+      <CardContent>
+        <Typography variant="h3">{props.ticket.title}</Typography>
+        <Typography variant="body1">{props.ticket.description}</Typography>
+      </CardContent>
+      <CardActions>
+        <Button component={RouterLink} to={`/issues/${props.ticket.id}`}>
+          See Issue
+        </Button>
+      </CardActions>
     </Card>
   );
 }

@@ -8,6 +8,7 @@ import {
   Typography,
   Button
 } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 import IssueCard from "./IssueCard";
 import Issue from "./Issue";
 import { getData } from "../actions";
@@ -38,7 +39,9 @@ function IssueList(props) {
   useEffect(() => {
     if (issues !== null && queryParams.category !== undefined) {
       const newFiltered = issues.filter(x =>
-        x.ticket.category.toLowerCase().includes(queryParams.category.toLowerCase())
+        x.ticket.category
+          .toLowerCase()
+          .includes(queryParams.category.toLowerCase())
       );
       setFiltered(newFiltered);
     } else {
@@ -48,8 +51,8 @@ function IssueList(props) {
 
   const clearFilter = () => {
     setFiltered(issues);
-    props.history.push("/issues")
-  }
+    props.history.push("/issues");
+  };
 
   return (
     <Container>
@@ -69,7 +72,11 @@ function IssueList(props) {
             spacing={2}
           >
             <Grid item>
-              <Categories categories={categories} match={match} />
+              <Categories
+                categories={categories}
+                match={match}
+                activeCategory={queryParams.category}
+              />
             </Grid>
             <Grid item>
               <Grid container spacing={1}>
@@ -105,8 +112,8 @@ function IssueList(props) {
                 </Grid>
               ))
             ) : (
-                <p>Loading...</p>
-              )}
+              <p>Loading...</p>
+            )}
           </Grid>
         </Route>
         <Route
@@ -126,12 +133,32 @@ const mapStateToProps = state => {
 
 export default connect(mapStateToProps, { getData })(IssueList);
 
+const useStyles = makeStyles({
+  category: {
+    padding: "1%",
+    margin: "5px"
+  },
+  active: {
+    backgroundColor: "blue"
+  }
+});
+
 function Categories(props) {
+  const classes = useStyles();
+
+  const isActive = category =>
+    props.activeCategory !== undefined &&
+    category.toLowerCase() === props.activeCategory.toLowerCase();
+
+  const activeClass = `${classes.category} ${classes.active}`;
   if (props.categories !== null) {
     return (
       <Grid container justify="center">
         {props.categories.map((category, idx) => (
-          <Paper key={idx}>
+          <Paper
+            key={idx}
+            className={isActive(category) ? activeClass : classes.category}
+          >
             <Link
               component={RouterLink}
               to={`${props.match.url}?category=${category}`}

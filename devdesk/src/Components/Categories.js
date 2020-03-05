@@ -1,55 +1,41 @@
 import React from "react";
-import { Link, Grid, Paper } from "@material-ui/core";
+import { FormControl, InputLabel, Select, MenuItem } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import { Link as RouterLink } from "react-router-dom";
-
-//<select type="text" name="category" onChange={handleChanges}>
-//    <option value="" defaultValue selected>Choose a Category</option>
-//    <option value="Git">Git</option>
-//    <option value="Express">Express</option>
-//    <option value="React">React</option>
-//    <option value="HTML">HTML</option>
-//    <option value="CSS">CSS</option>
-//    <option value="General Javascript">General Javascript</option>
-//    <option value="General Computer">General Computer</option>
-//    <option value="Other">Other</option>
-//</select>
 
 const useStyles = makeStyles({
-  category: {
-    padding: "1%",
-    margin: "5px"
-  },
-  active: {
-    backgroundColor: "blue"
+  selectEmpty: {
+    minWidth: 120
   }
 });
 
 function Categories(props) {
   const classes = useStyles();
 
-  const isActive = category =>
-    props.activeCategory !== undefined &&
-    category.toLowerCase() === props.activeCategory.toLowerCase();
+  const activeCategory = props.activeCategory || "";
 
-  const activeClass = `${classes.category} ${classes.active}`;
+  const handleChange = event => {
+    const category = event.target.value;
+    props.history.push(`${props.match.url}?category=${category}`);
+  };
+
   if (props.categories !== null) {
     return (
-      <Grid container justify="center">
-        {props.categories.map((category, idx) => (
-          <Paper
-            key={idx}
-            className={isActive(category) ? activeClass : classes.category}
-          >
-            <Link
-              component={RouterLink}
-              to={`${props.match.url}?category=${category}`}
-            >
+      <FormControl>
+        <InputLabel id="category-label">Category</InputLabel>
+        <Select
+          labelId="category-label"
+          id="category-select"
+          className={classes.selectEmpty}
+          value={activeCategory}
+          onChange={handleChange}
+        >
+          {props.categories.map((category, idx) => (
+            <MenuItem key={idx} value={category}>
               {category}
-            </Link>
-          </Paper>
-        ))}
-      </Grid>
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
     );
   } else {
     return <div></div>;

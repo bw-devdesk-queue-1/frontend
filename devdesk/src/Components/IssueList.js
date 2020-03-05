@@ -74,6 +74,7 @@ function IssueList(props) {
               <Categories
                 categories={categories}
                 match={match}
+                history={props.history}
                 activeCategory={queryParams.category}
               />
             </Grid>

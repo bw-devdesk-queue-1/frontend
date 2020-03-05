@@ -27,10 +27,4 @@ function IssueCard(props) {
   );
 }
 
-const mapStateToProps = state => {
-  // return {
-  //   issues: [...state.data]
-  // };
-};
-
-export default connect(mapStateToProps, { deleteData })(IssueCard);
+export default connect(null, { deleteData })(IssueCard);

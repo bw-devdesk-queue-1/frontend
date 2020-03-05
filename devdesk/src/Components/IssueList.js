@@ -3,14 +3,13 @@ import {
   Container,
   Link,
   Grid,
-  Paper,
   Breadcrumbs,
   Typography,
   Button
 } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
 import IssueCard from "./IssueCard";
 import Issue from "./Issue";
+import Categories from "./Categories";
 import { getData } from "../actions";
 import { connect } from "react-redux";
 import { Switch, Route, Link as RouterLink } from "react-router-dom";
@@ -77,6 +76,7 @@ function IssueList(props) {
               <Categories
                 categories={categories}
                 match={match}
+                history={props.history}
                 activeCategory={queryParams.category}
               />
             </Grid>
@@ -85,11 +85,6 @@ function IssueList(props) {
                 <Grid item>
                   <Button variant="contained" onClick={() => props.getData(studentId)}>
                     Refresh
-                  </Button>
-                </Grid>
-                <Grid item>
-                  <Button variant="contained" onClick={clearFilter}>
-                    Clear Filter
                   </Button>
                 </Grid>
                 <Grid item>
@@ -134,44 +129,3 @@ const mapStateToProps = state => {
 };
 
 export default connect(mapStateToProps, { getData })(IssueList);
-
-const useStyles = makeStyles({
-  category: {
-    padding: "1%",
-    margin: "5px"
-  },
-  active: {
-    backgroundColor: "blue"
-  }
-});
-
-function Categories(props) {
-  const classes = useStyles();
-
-  const isActive = category =>
-    props.activeCategory !== undefined &&
-    category.toLowerCase() === props.activeCategory.toLowerCase();
-
-  const activeClass = `${classes.category} ${classes.active}`;
-  if (props.categories !== null) {
-    return (
-      <Grid container justify="center">
-        {props.categories.map((category, idx) => (
-          <Paper
-            key={idx}
-            className={isActive(category) ? activeClass : classes.category}
-          >
-            <Link
-              component={RouterLink}
-              to={`${props.match.url}?category=${category}`}
-            >
-              {category}
-            </Link>
-          </Paper>
-        ))}
-      </Grid>
-    );
-  } else {
-    return <div></div>;
-  }
-}

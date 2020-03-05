@@ -47,7 +47,7 @@ function Login(props) {
           <div className='boxes'>
           <div className='formFields'>
         <TextField id='outlined-basic' label='username' name="username" variant='outlined' onChange={event => iChangeStuff(event)} />
-        <TextField id='outlined-basic' label='password' name="password" variant='outlined' onChange={event => iChangeStuff(event)} />
+        <TextField id='outlined-basic' label='password' type ='password'  name="password" variant='outlined' onChange={event => iChangeStuff(event)} />
         </div>
         <Button onClick={(e) => {
           if(user.username < 1 && user.password < 1){

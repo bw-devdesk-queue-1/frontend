@@ -1,6 +1,12 @@
-import React, { useState } from 'react';
-import { connect } from 'react-redux';
-import { editData } from '../actions';
+import React, {
+    useState
+} from 'react';
+import {
+    connect
+} from 'react-redux';
+import {
+    editData
+} from '../actions';
 
 
 const initialState = {
@@ -12,7 +18,9 @@ const initialState = {
 
 const UpdateIssue = (props) => {
     console.log(props)
-    const { match } = props
+    const {
+        match
+    } = props
     const [edit, setEdit] = useState(initialState)
 
     const handleChanges = e => {
@@ -26,7 +34,7 @@ const UpdateIssue = (props) => {
 
     const submitChanges = (id, edits) => {
         props.editData(id, edits)
-        props.history.push(`/issues/${match.params.id}`)
+        props.history.push(`/issues/`)
     }
 
     console.log(match.params.id)

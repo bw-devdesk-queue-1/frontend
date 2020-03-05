@@ -35,7 +35,7 @@ export const loginReducer = (state = initialState, action) => {
         case POST_DATA:
             return {
                 ...state,
-                data: action.payload
+                data: [...state.data, action.payload]
             }
         case EDIT_DATA:
             return {

@@ -30,10 +30,80 @@
 img{
     margin-top: 5%;
 }
-.boxes{
-    margin-left: 33%;
+
+// #outlined-basic{
+//     margin: 2%;
+    
+// }
+
+
+
+
+/// this is for the create issue page
+
+
+
+
+
+.titleBox{
+    display: flex;
+    flex-direction: column;
+    // width: 50%;
+    align-items: center;
+    font-size: x-large;
+    font-weight: 500;
+    margin-top: 1%;
 }
-#outlined-basic{
-    margin: 2%;
+
+.descriptionBox{
+    display: flex;
+    flex-direction: column;    
+    align-items: center;
+    font-size: x-large;
+    font-weight: 500;
+    margin-top: 1%;
+}
+
+.whytBox{
+    display: flex;
+    flex-direction: column;    
+    align-items: center;
+    font-size: x-large;
+    font-weight: 500;
+    margin-top: 1%;
+    margin-bottom: 2%;
+}
+
+.createIssue{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+
+}
+
+.topBarCreate{
+    background:  #bfe8ea;
     
 }
+
+
+
+
+//// cards
+body{
+    background: #bfe8ea;
+}
+
+.issueCardIndv{
+    width:100%;
+    height: 25vh;
+    display: flex;
+    flex-direction: column;
+    
+
+
+
+}
+

@@ -13,13 +13,13 @@ import { connect } from "react-redux";
 
 function IssueCard(props) {
   return (
-    <Card>
+    <Card className='issueCardIndv'>
       <CardContent>
         <Typography variant="h3">{props.ticket.title}</Typography>
         <Typography variant="body1">{props.ticket.description}</Typography>
       </CardContent>
       <CardActions>
-        <Button component={RouterLink} to={`/issues/${props.ticket.id}`}>
+        <Button className='issueButton' component={RouterLink} to={`/issues/${props.ticket.id}`}>
           See Issue
         </Button>
       </CardActions>

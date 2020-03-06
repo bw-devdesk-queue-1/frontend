@@ -5,7 +5,9 @@ import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import { Link } from 'react-router-dom';
-import thumbnail from '../Images/phonenew.png'
+import thumbnail from '../Images/phonenew.png';
+
+
 
 const getLogin = {
   username: '',
@@ -66,7 +68,7 @@ function Login(props) {
           </div>
 
           <div className='redirectToCreate'>
-            <p> If you do not already have an account please click the register button to create an account.</p>
+            <p> If you do not already have an account<br/> Please click the register button to create an account.</p>
             <Link to='/Registar'>
               <Button size='small' variant='contained' color='primary'> Register</Button>
             </Link>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import {
   Container,
   Link,
@@ -66,9 +66,9 @@ function IssueList(props) {
   }
 
   // Load data when the app first starts
-  useEffect(() => {
+  useEffect(useCallback(() => {
     filterByUserType();
-  }, []);
+  }, []), [filterByUserType]);
 
   return (
     <Container>

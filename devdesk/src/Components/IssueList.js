@@ -66,9 +66,9 @@ function IssueList(props) {
   }
 
   // Load data when the app first starts
-  useEffect(useCallback(() => {
+  useEffect(() => {
     filterByUserType();
-  }, []), [filterByUserType]);
+  }, []);
 
   return (
     <Container>

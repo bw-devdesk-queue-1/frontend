@@ -5,7 +5,7 @@ import {
 	Grid,
 	Breadcrumbs,
 	Typography,
-	Button
+	Button,
 } from '@material-ui/core';
 import IssueCard from './IssueCard';
 import Issue from './Issue';
@@ -23,7 +23,7 @@ function IssueList(props) {
 	const [filtered, setFiltered] = useState(issues);
 
 	const queryParams = qs.parse(props.location.search, {
-		ignoreQueryPrefix: true
+		ignoreQueryPrefix: true,
 	});
 
 	// Using axios outside of redux so that I can meet MVP for using
@@ -31,13 +31,13 @@ function IssueList(props) {
 	useEffect(() => {
 		axiosWithAuth()
 			.get('/api/categories')
-			.then(res => setCategories(res.data))
-			.catch(err => console.log('Failed to retrieve categories: ', err));
+			.then((res) => setCategories(res.data))
+			.catch((err) => console.log('Failed to retrieve categories: ', err));
 	}, []);
 
 	useEffect(() => {
 		if (issues !== null && queryParams.category !== undefined) {
-			const newFiltered = issues.filter(x =>
+			const newFiltered = issues.filter((x) =>
 				x.ticket.category
 					.toLowerCase()
 					.includes(queryParams.category.toLowerCase())
@@ -126,7 +126,7 @@ function IssueList(props) {
 
 					<Grid container justify='center' spacing={2}>
 						{filtered !== null ? (
-							filtered.map(issue => (
+							filtered.map((issue) => (
 								<Grid item key={issue.ticket.id}>
 									<IssueCard {...issue} />
 								</Grid>
@@ -138,16 +138,16 @@ function IssueList(props) {
 				</Route>
 				<Route
 					path={`${match.path}/:id`}
-					render={renderProps => <Issue {...renderProps} issues={issues} />}
+					render={(renderProps) => <Issue {...renderProps} issues={issues} />}
 				/>
 			</Switch>
 		</Container>
 	);
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
 	return {
-		issues: state.data
+		issues: state.data,
 	};
 };
 
